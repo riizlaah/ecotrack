@@ -1,5 +1,8 @@
 package nr.dev.ecotrack
 
+import java.time.LocalDateTime
+import java.time.OffsetDateTime
+
 
 object Route {
     const val LOGIN = "login"
@@ -22,4 +25,13 @@ data class Category(
 data class Transaction(
     val weight: Double,
     val categoryId: Int
+)
+
+data class Transaction2(
+    val id: Int,
+    val weight: Double,
+    val categoryId: Int,
+    val categoryName: String,
+    val totalPrice: Double,
+    val createdAt: LocalDateTime
 )

@@ -25,7 +25,14 @@ namespace EcoTrackAPI.Controllers
             {
                 return Helper.errResponse("User id not valid!", 400);
             }
-            return Helper.Success(dbc.Transactions.Include(t => t.Category).Where(t => t.UserId == userId).ToList());
+            return Helper.Success(dbc.Transactions
+                .Include(t => t.Category).Where(t => t.UserId == userId)
+                .Select(t => new TransactionDetailDTO {
+                    id = t.Id, categoryId = t.CategoryId, categoryName = t.Category.Name ?? "",
+                    weight = t.Weight, createdAt = t.Date, totalPrice = t.TotalPrice})
+                .OrderByDescending(t => t.createdAt)
+                .ToList()
+            );
         }
         [Authorize]
         [HttpPost]

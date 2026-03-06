@@ -5,6 +5,8 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
+import java.time.LocalDateTime
+import java.time.OffsetDateTime
 
 data class HttpReq(
     val url: String,
@@ -131,5 +133,24 @@ object HttpClient {
         val body = """{"weight": $weight, "categoryId": $categoryId}"""
         val res = jsonReq(address + "transactions", body)
         return res.code == 200
+    }
+
+    suspend fun getTransactions(): List<Transaction2> {
+        val res = jsonReq(address + "transactions", method = "GET")
+        if(res.code != 200 || res.body == null) return emptyList()
+        val arr = JSONObject(res.body).getJSONArray("data")
+        val transactions = mutableListOf<Transaction2>()
+        for(i in 0 until arr.length()) {
+            val obj = arr.getJSONObject(i)
+            transactions.add(Transaction2(
+                id = obj.getInt("id"),
+                categoryId = obj.getInt("categoryId"),
+                categoryName = obj.getString("categoryName"),
+                weight = obj.getDouble("weight"),
+                totalPrice = obj.getDouble("totalPrice"),
+                createdAt = LocalDateTime.parse(obj.getString("createdAt"))
+            ))
+        }
+        return transactions
     }
 }
