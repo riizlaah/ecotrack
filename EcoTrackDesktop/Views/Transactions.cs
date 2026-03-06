@@ -24,11 +24,13 @@ namespace EcoTrackDesktop.Views
             dbc = ctx;
             InitializeComponent();
             Helper.GenTableColumns(
-                new string[] { "Id", "Customer Name", "Category", "Weight", "Total Price", "Date Time" },
-                new string[] { "Id", "CustomerName", "CategoryName", "WeightKG", "TotalPriceRp", "Date" },
+                new string[] { "Customer Name", "Category", "Weight", "Total Price", "Date Time" },
+                new string[] { "CustomerName", "CategoryName", "WeightKG", "TotalPriceRp", "Date" },
                 table1
             );
             RefreshData();
+            startDate.Value = DateTime.Now;
+            endDate.Value = DateTime.Now.AddDays(7);
         }
 
         public void RefreshData(string src = "")
@@ -36,13 +38,16 @@ namespace EcoTrackDesktop.Views
             var query = dbc.Transactions.AsQueryable();
             if(src.Trim() != "")
             {
-                query = query.Where(u => u.User.FullName.Contains(src) || u.User.Username.Contains(src));
+                query = query.Where(u => u.User.FullName.Contains(src) || u.User.Username.Contains(src) || u.Category.Name.Contains(src));
+            }
+            if(todayOpt.Checked)
+            {
+                query = query.Where(t => DbFunctions.TruncateTime(t.Date) == DbFunctions.TruncateTime(DateTime.Today));
+            } else
+            {
+                query = query.Where(t => DbFunctions.TruncateTime(t.Date) >= DbFunctions.TruncateTime(startDate.Value) && DbFunctions.TruncateTime(t.Date) <= DbFunctions.TruncateTime(endDate.Value));
             }
             table1.DataSource = query.Include(t => t.User).Include(t => t.Category).OrderByDescending(t => t.Date).ToList();
-        }
-
-        private void onCellClicked(object sender, DataGridViewCellEventArgs e)
-        {
         }
 
         private void onTrySearch(object sender, EventArgs e)
@@ -50,5 +55,42 @@ namespace EcoTrackDesktop.Views
             RefreshData(search.Text);
         }
 
+        private void onTodayCheckedChanged(object sender, EventArgs e)
+        {
+            if(todayOpt.Checked)
+            {
+                dateRangeInput.Hide();
+                RefreshData();
+            }
+        }
+
+        private void onDateRangeCheckedChanged(object sender, EventArgs e)
+        {
+            if(dateRangeOpt.Checked)
+            {
+                dateRangeInput.Show();
+                RefreshData();
+            }
+        }
+
+        private void onStartDateChanged(object sender, EventArgs e)
+        {
+            if (todayOpt.Checked) return;
+            if (startDate.Value > endDate.Value)
+            {
+                endDate.Value = startDate.Value.AddDays(1);
+            }
+            RefreshData();
+        }
+
+        private void onEndDateChanged(object sender, EventArgs e)
+        {
+            if (todayOpt.Checked) return;
+            if (endDate.Value < startDate.Value)
+            {
+                endDate.Value = startDate.Value.AddDays(1);
+            }
+            RefreshData();
+        }
     }
 }

@@ -27,7 +27,6 @@ namespace EcoTrackAPI.Controllers
         [HttpGet("me")]
         public IResult Me()
         {
-            Debug.WriteLine(User.FindFirstValue(ClaimTypes.NameIdentifier));
             if (!int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int userId))
             {
                 return Helper.errResponse("User id not valid!", 400);
@@ -35,8 +34,10 @@ namespace EcoTrackAPI.Controllers
             var user = dbc.Users.Find(userId);
             return Helper.Success(new
             {
+                id = user.Id,
                 fullName = user.FullName,
                 username = user.Username,
+                role = user.Role,
                 phone = user.Phone,
                 balance = user.Balance
             }, "Profile fetched successfully.");

@@ -40,7 +40,9 @@ namespace EcoTrackAPI.Controllers
             if (category is null) return Helper.errResponse("Category not found.");
             var totalPrice = category.PricePerKg * input.weight ?? 0m;
             var transac = input.toTransaction(userId, totalPrice);
+            dbc.Users.Find(userId).Balance += totalPrice;
             dbc.Transactions.Add(transac);
+            dbc.SaveChanges();
             return Helper.Success(new
             {
                 transactionId = transac.Id,

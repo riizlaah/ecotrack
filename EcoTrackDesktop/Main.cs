@@ -58,6 +58,8 @@ namespace EcoTrackDesktop
                     return;
                 } else if(user.Role == "officer")
                 {
+                    var officerWindow = new OfficerForms(this, dbc);
+                    officerWindow.Show();
                     Hide();
                     return;
                 }

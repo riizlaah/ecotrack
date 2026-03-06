@@ -31,14 +31,30 @@ namespace EcoTrackDesktop.Views
             roleFilters.DataSource = new string[] { "all", "customer", "officer", "admin" };
             roleFilters.SelectedIndex = 0;
             RefreshData();
+            if(dbc.currUser.Role == "officer")
+            {
+                roles.SelectedIndex = 0;
+                roleFilters.SelectedIndex = 1;
+                roleFilters.Enabled = false;
+                roles.Hide();
+                roleLb.Hide();
+                password.Hide();
+                passwordLb.Hide();
+            }
         }
 
         public void RefreshData(string src = "")
         {
             var query = dbc.Users.AsQueryable();
+            
             if(src.Trim() != "")
             {
                 query = query.Where(u => u.Username.Contains(src) || u.FullName.Contains(src));
+            }
+            if(dbc.currUser.Role == "officer")
+            {
+                table1.DataSource = query.Where(u => u.Role == "customer").ToList();
+                return;
             }
             if(roleFilters.SelectedIndex == 0)
             {
@@ -62,13 +78,14 @@ namespace EcoTrackDesktop.Views
         private void onInsertClicked(object sender, EventArgs e)
         {
             editing = false;
+            passwordLb.Show();
+            password.Show();
             actionPanel.Hide();
             saveNCancel.Show();
         }
 
         private void onSave(object sender, EventArgs e)
         {
-            
             if(username.Text.Trim() == "")
             {
                 MessageBox.Show("Username can't be empty.");
@@ -101,6 +118,11 @@ namespace EcoTrackDesktop.Views
                     return;
                 }
                 var user = dbc.Users.Find(GetSelected().Id);
+                if (dbc.Users.Any(u => u.Username == username.Text && u.Id != user.Id))
+                {
+                    MessageBox.Show("Username has been used.");
+                    return;
+                }
                 user.Username = username.Text;
                 if(password.Text != "")
                 {
@@ -111,6 +133,11 @@ namespace EcoTrackDesktop.Views
                 user.Role = roles.SelectedItem.ToString();
             } else
             {
+                if(dbc.Users.Any(u => u.Username == username.Text))
+                {
+                    MessageBox.Show("Username has been used.");
+                    return;
+                }
                 dbc.Users.Add(new User
                 {
                     Username = username.Text,
@@ -129,6 +156,11 @@ namespace EcoTrackDesktop.Views
         {
             username.Text = "";
             password.Text = "";
+            if (dbc.currUser.Role == "officer")
+            {
+                password.Hide();
+                passwordLb.Hide();
+            }
             phone.Text = "";
             fullName.Text = "";
             roles.SelectedIndex = -1;
@@ -140,6 +172,11 @@ namespace EcoTrackDesktop.Views
         private void onEdit(object sender, EventArgs e)
         {
             var user = GetSelected();
+            if (dbc.currUser.Role == "officer")
+            {
+                password.Hide();
+                passwordLb.Hide();
+            }
             username.Text = user.Username;
             fullName.Text = user.FullName;
             phone.Text = user.Phone;

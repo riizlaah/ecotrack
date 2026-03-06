@@ -30,6 +30,7 @@ namespace EcoTrackDesktop.Models
 
         [StringLength(20)]
         public string Phone { get; set; }
+        public string PhoneWName => $"{Phone} - {FullName}";
 
         public decimal? Balance { get; set; } = 0m;
 

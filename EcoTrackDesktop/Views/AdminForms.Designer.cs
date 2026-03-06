@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.timeLb = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -47,7 +47,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 227F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 205F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 348F));
             this.tableLayoutPanel1.Controls.Add(this.timeLb, 5, 0);
             this.tableLayoutPanel1.Controls.Add(this.button4, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.button3, 2, 0);
@@ -62,38 +62,16 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1062, 31);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // button1
+            // timeLb
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 25);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Logout";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.onLogout);
-            // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(113, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(126, 25);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Users";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.onUser);
-            // 
-            // button3
-            // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.Location = new System.Drawing.Point(245, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(124, 25);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Categories";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.onCategory);
+            this.timeLb.AutoSize = true;
+            this.timeLb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.timeLb.Location = new System.Drawing.Point(717, 0);
+            this.timeLb.Name = "timeLb";
+            this.timeLb.Size = new System.Drawing.Size(342, 31);
+            this.timeLb.TabIndex = 5;
+            this.timeLb.Text = "time";
+            this.timeLb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // button4
             // 
@@ -106,6 +84,39 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.onTransactions);
             // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.Location = new System.Drawing.Point(245, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(124, 25);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Categories";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.onCategory);
+            // 
+            // button2
+            // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.Location = new System.Drawing.Point(113, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(126, 25);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Users";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.onUser);
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(104, 25);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Logout";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.onLogout);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -116,17 +127,6 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Hi Admin";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // timeLb
-            // 
-            this.timeLb.AutoSize = true;
-            this.timeLb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.timeLb.Location = new System.Drawing.Point(717, 0);
-            this.timeLb.Name = "timeLb";
-            this.timeLb.Size = new System.Drawing.Size(342, 31);
-            this.timeLb.TabIndex = 5;
-            this.timeLb.Text = "time";
-            this.timeLb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel1
             // 

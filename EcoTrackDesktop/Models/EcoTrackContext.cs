@@ -16,6 +16,7 @@ namespace EcoTrackDesktop.Models
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public User currUser = null;
+        public string lastUserPhoneNum = "";
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

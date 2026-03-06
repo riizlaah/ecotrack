@@ -26,6 +26,6 @@ namespace EcoTrackDesktop.Models
         public string CategoryName => Category?.Name ?? "";
 
         public virtual User User { get; set; }
-        public string CustomerName => User?.Username ?? "";
+        public string CustomerName => User?.FullName ?? "";
     }
 }

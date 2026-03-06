@@ -33,21 +33,21 @@
             this.insert = new System.Windows.Forms.Button();
             this.roleFilters = new System.Windows.Forms.ComboBox();
             this.actionPanel = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.saveNCancel = new System.Windows.Forms.Panel();
             this.search = new System.Windows.Forms.TextBox();
             this.username = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.passwordLb = new System.Windows.Forms.Label();
             this.password = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.fullName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.phone = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.roleLb = new System.Windows.Forms.Label();
             this.roles = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             this.actionPanel.SuspendLayout();
@@ -91,7 +91,7 @@
             // 
             this.roleFilters.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.roleFilters.FormattingEnabled = true;
-            this.roleFilters.Location = new System.Drawing.Point(103, 8);
+            this.roleFilters.Location = new System.Drawing.Point(118, 8);
             this.roleFilters.Name = "roleFilters";
             this.roleFilters.Size = new System.Drawing.Size(121, 24);
             this.roleFilters.TabIndex = 3;
@@ -107,15 +107,15 @@
             this.actionPanel.TabIndex = 4;
             this.actionPanel.Visible = false;
             // 
-            // button2
+            // button4
             // 
-            this.button2.Location = new System.Drawing.Point(3, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.onSave);
+            this.button4.Location = new System.Drawing.Point(84, 4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "Delete";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.onDelete);
             // 
             // button3
             // 
@@ -127,15 +127,15 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.onEdit);
             // 
-            // button4
+            // button2
             // 
-            this.button4.Location = new System.Drawing.Point(84, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Delete";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.onDelete);
+            this.button2.Location = new System.Drawing.Point(3, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Save";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.onSave);
             // 
             // button5
             // 
@@ -181,18 +181,18 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Username";
             // 
-            // label3
+            // passwordLb
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 380);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 16);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Password";
+            this.passwordLb.AutoSize = true;
+            this.passwordLb.Location = new System.Drawing.Point(7, 433);
+            this.passwordLb.Name = "passwordLb";
+            this.passwordLb.Size = new System.Drawing.Size(67, 16);
+            this.passwordLb.TabIndex = 13;
+            this.passwordLb.Text = "Password";
             // 
             // password
             // 
-            this.password.Location = new System.Drawing.Point(88, 377);
+            this.password.Location = new System.Drawing.Point(88, 430);
             this.password.Name = "password";
             this.password.PasswordChar = '*';
             this.password.Size = new System.Drawing.Size(187, 22);
@@ -201,7 +201,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 408);
+            this.label4.Location = new System.Drawing.Point(7, 378);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 16);
             this.label4.TabIndex = 15;
@@ -209,7 +209,7 @@
             // 
             // fullName
             // 
-            this.fullName.Location = new System.Drawing.Point(88, 405);
+            this.fullName.Location = new System.Drawing.Point(88, 375);
             this.fullName.Name = "fullName";
             this.fullName.Size = new System.Drawing.Size(187, 22);
             this.fullName.TabIndex = 14;
@@ -217,7 +217,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 436);
+            this.label5.Location = new System.Drawing.Point(7, 406);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 16);
             this.label5.TabIndex = 17;
@@ -225,25 +225,25 @@
             // 
             // phone
             // 
-            this.phone.Location = new System.Drawing.Point(88, 433);
+            this.phone.Location = new System.Drawing.Point(88, 403);
             this.phone.Name = "phone";
             this.phone.Size = new System.Drawing.Size(187, 22);
             this.phone.TabIndex = 16;
             // 
-            // label6
+            // roleLb
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 464);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(36, 16);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "Role";
+            this.roleLb.AutoSize = true;
+            this.roleLb.Location = new System.Drawing.Point(7, 459);
+            this.roleLb.Name = "roleLb";
+            this.roleLb.Size = new System.Drawing.Size(36, 16);
+            this.roleLb.TabIndex = 19;
+            this.roleLb.Text = "Role";
             // 
             // roles
             // 
             this.roles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.roles.FormattingEnabled = true;
-            this.roles.Location = new System.Drawing.Point(88, 461);
+            this.roles.Location = new System.Drawing.Point(88, 456);
             this.roles.Name = "roles";
             this.roles.Size = new System.Drawing.Size(187, 24);
             this.roles.TabIndex = 20;
@@ -253,13 +253,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.roles);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.roleLb);
             this.Controls.Add(this.insert);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.phone);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.fullName);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.passwordLb);
             this.Controls.Add(this.password);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.username);
@@ -294,13 +294,13 @@
         private System.Windows.Forms.TextBox search;
         private System.Windows.Forms.TextBox username;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label passwordLb;
         private System.Windows.Forms.TextBox password;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox fullName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox phone;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label roleLb;
         private System.Windows.Forms.ComboBox roles;
     }
 }
