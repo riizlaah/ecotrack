@@ -101,7 +101,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "Main";
-            this.Text = "Login";
+            this.Text = "EcoTrack Desktop Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 

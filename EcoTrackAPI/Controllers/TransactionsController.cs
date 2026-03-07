@@ -19,6 +19,8 @@ namespace EcoTrackAPI.Controllers
 
         [Authorize]
         [HttpGet]
+        [ProducesResponseType(403)]
+        [ProducesResponseType(400)]
         public IResult GetAll()
         {
             if(!int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int userId))
@@ -36,6 +38,8 @@ namespace EcoTrackAPI.Controllers
         }
         [Authorize]
         [HttpPost]
+        [ProducesResponseType(403)]
+        [ProducesResponseType(400)]
         public IResult Create(TransactionCustomerDTO input)
         {
             if (!int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int userId))

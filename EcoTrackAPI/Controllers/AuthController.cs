@@ -29,7 +29,7 @@ namespace EcoTrackAPI.Controllers
         {
             if (!int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int userId))
             {
-                return Helper.errResponse("User id not valid!", 400);
+                return Helper.errResponse("User id not valid!");
             }
             var user = dbc.Users.Find(userId);
             return Helper.Success(new
@@ -43,6 +43,7 @@ namespace EcoTrackAPI.Controllers
             }, "Profile fetched successfully.");
         }
         [HttpPost("login")]
+        [ProducesResponseType(400)]
 
         public IResult Login(UserLoginDTO input)
         {
@@ -58,6 +59,7 @@ namespace EcoTrackAPI.Controllers
         }
 
         [HttpPost("register")]
+        [ProducesResponseType(400)]
         public IResult Register(CustomerRegisterDTO input)
         {
             if (input.username.Trim() == "") return Helper.errResponse("Username not valid!");
@@ -82,7 +84,7 @@ namespace EcoTrackAPI.Controllers
             return Helper.Success(new {userId = user.Id, username = user.Username, role = user.Role}, "Account created successfully.");
         }
 
-        public string hash(string input)
+        private string hash(string input)
         {
             using(var alg = SHA256.Create())
             {
@@ -97,13 +99,13 @@ namespace EcoTrackAPI.Controllers
             }
         }
 
-        public bool isHashEqual(string input, string hashedStr)
+        private bool isHashEqual(string input, string hashedStr)
         {
             var hashedInput = hash(input);
             return StringComparer.OrdinalIgnoreCase.Compare(hashedInput, hashedStr) == 0;
         }
 
-        public string GenerateToken(string userId, string username, string role)
+        private string GenerateToken(string userId, string username, string role)
         {
             var claims = new Claim[]
             {
